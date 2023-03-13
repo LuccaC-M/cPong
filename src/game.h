@@ -2,9 +2,12 @@
 #define GAME_H
 
 #include "structs.h"
+#include "raylib.h"
+#include "startpage.h"
+
 
 // Function Declarations
-void GameLoop();
+enum game_status GameLoop();
 void DrawGraphics();
 void Initialize();
 void Physics();

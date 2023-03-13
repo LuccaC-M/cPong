@@ -1,5 +1,6 @@
 #include "game.h"
-#include "raylib.h"
+#include "startpage.h"
+#include <raylib.h>
 
 // Global game variables
 int screen_width, screen_height;
@@ -32,24 +33,28 @@ void Initialize() {
     left_player.score = 0;
 }
 
-void GameLoop() {
-//      Handle Physics
-        Physics();
+enum game_status GameLoop() {
+//  if Q is pressed quit the game & go to start page
+    if (IsKeyDown(KEY_Q))
+        return start_page;
+//  Handle Physics
+    Physics();
 //      Handle player input
-        if (IsKeyDown(KEY_W)) {
-            left_player.y -= left_player.speed * GetFrameTime();
-        }
-        if (IsKeyDown(KEY_S)) {
-            left_player.y += left_player.speed * GetFrameTime();
-        }
-        if (IsKeyDown(KEY_I)) {
-            right_player.y -= right_player.speed * GetFrameTime();
-        }
-        if (IsKeyDown(KEY_K)) {
-            right_player.y += right_player.speed * GetFrameTime();
-        }
-//      Draw everything to the screen
-        DrawGraphics();
+    if (IsKeyDown(KEY_W)) {
+        left_player.y -= left_player.speed * GetFrameTime();
+    }
+    if (IsKeyDown(KEY_S)) {
+        left_player.y += left_player.speed * GetFrameTime();
+    }
+    if (IsKeyDown(KEY_I)) {
+        right_player.y -= right_player.speed * GetFrameTime();
+    }
+    if (IsKeyDown(KEY_K)) {
+        right_player.y += right_player.speed * GetFrameTime();
+    }
+//  Draw everything to the screen
+    DrawGraphics();
+    return game_page;
 }
 void DrawGraphics() {
     BeginDrawing();
