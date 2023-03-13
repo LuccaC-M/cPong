@@ -1,3 +1,5 @@
+#ifndef STRUCTS_H
+#define STRUCTS_H
 
 typedef struct {
     // Cordinates
@@ -15,4 +17,4 @@ typedef struct {
     int score;
 }Player;
 
-
+#endif // STRUCTS_H
