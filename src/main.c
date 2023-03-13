@@ -1,12 +1,18 @@
 #include "raylib.h"
 
+// Global Variables
+int screen_width, screen_height;
+
+// Function Declarations
 void DrawGraphics();
 
 int main (void) {
 
-    InitWindow(800, 460, "Pong");
-
+    InitWindow(0, 0, "Pong");
+    ToggleFullscreen();
     SetTargetFPS(60);
+    screen_width = GetScreenWidth();
+    screen_height = GetScreenHeight();
 
     while (!WindowShouldClose()) {
         DrawGraphics();
@@ -17,8 +23,6 @@ int main (void) {
 
 void DrawGraphics() {
     BeginDrawing();
-        ClearBackground(WHITE);
-
-        DrawText("Hello", 190, 200, 20, LIGHTGRAY);
+        ClearBackground(BLACK);
     EndDrawing();
 }
