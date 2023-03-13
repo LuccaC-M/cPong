@@ -8,6 +8,7 @@ Player right_player, left_player;
 // Function Declarations
 void DrawGraphics();
 void Initialize();
+void ServeBall(int *x, int *y, int *x_direction);
 
 int main (void) {
     Initialize();
@@ -15,10 +16,14 @@ int main (void) {
     while (!WindowShouldClose()) {
         ball.y += ball.speed * ball.y_direction * GetFrameTime();
         ball.x += ball.speed * ball.x_direction * GetFrameTime();
-        if (ball.x <= 0)
+        if (ball.x <= 0) {
             right_player.score++;
-        if (ball.x >= screen_width)
+            ServeBall(&ball.x, &ball.y, &ball.x_direction);
+        }
+        if (ball.x >= screen_width) {
             left_player.score++;
+            ServeBall(&ball.x, &ball.y, &ball.x_direction);
+        }
 
         if (ball.y <= 0 || ball.y >= screen_height)
             ball.y_direction *= -1;
@@ -80,4 +85,12 @@ void DrawGraphics() {
         // Ball
         DrawCircle(ball.x, ball.y, 5, WHITE);
     EndDrawing();
+}
+
+void ServeBall(int *x, int *y, int *x_direction) {
+    *x = screen_width / 2;
+    *y = screen_height / 2;
+    *x_direction = right_player.score - left_player.score;
+    if (*x_direction == 0)
+        *x_direction = 1;
 }
