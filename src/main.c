@@ -3,7 +3,7 @@
 // Structures
 typedef struct {
     // Cordinates
-    int posX, posY;
+    int x, y;
 }Ball;
 
 typedef struct {
@@ -19,12 +19,23 @@ Ball ball;
 Player right_player, left_player;
 // Function Declarations
 void DrawGraphics();
+void Initialize();
 
 int main (void) {
+    Initialize();
+    while (!WindowShouldClose()) {
+        DrawGraphics();
+    }
+    
+    return 0;
+}
 
+void Initialize() {
+//  Initialize the window
     InitWindow(0, 0, "Pong");
     ToggleFullscreen();
     SetTargetFPS(60);
+//  Screen Variables
     screen_width = GetScreenWidth();
     screen_height = GetScreenHeight();
 //  Ball
@@ -45,6 +56,6 @@ void DrawGraphics() {
         // Right Player
         DrawRectangle(screen_width * 9 / 10, right_player.x, 15, 100, WHITE);
         // Ball
-        DrawCircle(ball.posX, ball.posY, 5, WHITE);
+        DrawCircle(ball.x, ball.y, 5, WHITE);
     EndDrawing();
 }
