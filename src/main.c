@@ -28,5 +28,7 @@ void DrawGraphics() {
         DrawRectangle(screen_width / 10, (screen_height - 50) / 2, 15, 100, WHITE);
         // Right Player
         DrawRectangle(screen_width * 9 / 10, (screen_height - 50) / 2, 15, 100, WHITE);
+        // Ball
+        DrawCircle(screen_width / 2, screen_height / 2, 5, WHITE);
     EndDrawing();
 }
