@@ -23,6 +23,9 @@ int main (void) {
         if (ball.y <= 0 || ball.y >= screen_height)
             ball.y_direction *= -1;
 
+        if (CheckCollisionCircleRec((Vector2) {ball.x, ball.y}, 5, (Rectangle) {left_player.x, left_player.y, 15, 100})
+                || CheckCollisionCircleRec((Vector2) {ball.x, ball.y}, 5, (Rectangle) {right_player.x, right_player.y, 15, 100}))
+            ball.x_direction *= -1;
         if (IsKeyDown(KEY_W)) {
             left_player.y -= left_player.speed * GetFrameTime();
         }
