@@ -66,10 +66,13 @@ void Initialize() {
 void DrawGraphics() {
     BeginDrawing();
         ClearBackground((Color) {43, 43, 43, 1});
+        // Scores
+        DrawText(TextFormat("%02i", left_player.score), screen_width/ 4, 10, 50, BLUE);
+        DrawText(TextFormat("%02i", right_player.score), screen_width * 3/ 4, 10, 50, RED);
         // Left Player
-        DrawRectangle(left_player.x, left_player.y, 15, 100, RAYWHITE);
+        DrawRectangle(left_player.x, left_player.y, 15, 100, BLUE);
         // Right Player
-        DrawRectangle(right_player.x, right_player.y, 15, 100, RAYWHITE);
+        DrawRectangle(right_player.x, right_player.y, 15, 100, RED);
         // Ball
         DrawCircle(ball.x, ball.y, 5, WHITE);
     EndDrawing();
