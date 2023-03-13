@@ -1,19 +1,5 @@
 #include "raylib.h"
-
-// Structures
-typedef struct {
-    // Cordinates
-    int x, y;
-    // Movement Variables
-    int speed, direction;
-}Ball;
-
-typedef struct {
-    // Cordinates
-    int x, y;
-    // Movement variables
-    int speed;
-}Player;
+#include "structs.h"
 
 // Global Variables
 int screen_width, screen_height;
