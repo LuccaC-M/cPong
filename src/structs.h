@@ -3,7 +3,7 @@ typedef struct {
     // Cordinates
     int x, y;
     // Movement Variables
-    int speed, direction;
+    int speed, x_direction, y_direction;
 }Ball;
 
 typedef struct {

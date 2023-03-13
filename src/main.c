@@ -13,6 +13,9 @@ int main (void) {
     Initialize();
 
     while (!WindowShouldClose()) {
+        ball.y += ball.speed * ball.y_direction * GetFrameTime();
+        ball.x += ball.speed * ball.x_direction * GetFrameTime();
+
         if (IsKeyDown(KEY_W)) {
             left_player.y -= left_player.speed * GetFrameTime();
         }
@@ -42,10 +45,14 @@ void Initialize() {
 //  Ball
     ball.x = screen_width / 2;
     ball.y = screen_height / 2;
-//  Players
+    ball.speed = 500;
+    ball.x_direction = 1;
+    ball.y_direction = 1;
+//  Left player
     left_player.y = (screen_height - 50) / 2;
     left_player.x = screen_width / 10;
     left_player.speed = 400;
+//  Right player
     right_player.y = (screen_height - 50) / 2;
     right_player.x = screen_width * 9 / 10;
     right_player.speed = 400;
