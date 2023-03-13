@@ -8,7 +8,7 @@ Player right_player, left_player;
 // Function Declarations
 void DrawGraphics();
 void Initialize();
-void ServeBall(int *x, int *y, int *x_direction);
+void ServeBall(int *x, int *y, int *x_direction, int *speed);
 
 int main (void) {
     Initialize();
@@ -18,19 +18,21 @@ int main (void) {
         ball.x += ball.speed * ball.x_direction * GetFrameTime();
         if (ball.x <= 0) {
             right_player.score++;
-            ServeBall(&ball.x, &ball.y, &ball.x_direction);
+            ServeBall(&ball.x, &ball.y, &ball.x_direction, &ball.speed);
         }
         if (ball.x >= screen_width) {
             left_player.score++;
-            ServeBall(&ball.x, &ball.y, &ball.x_direction);
+            ServeBall(&ball.x, &ball.y, &ball.x_direction, &ball.speed);
         }
 
         if (ball.y <= 0 || ball.y >= screen_height)
             ball.y_direction *= -1;
 
         if (CheckCollisionCircleRec((Vector2) {ball.x, ball.y}, 5, (Rectangle) {left_player.x, left_player.y, 15, 100})
-                || CheckCollisionCircleRec((Vector2) {ball.x, ball.y}, 5, (Rectangle) {right_player.x, right_player.y, 15, 100}))
+        || CheckCollisionCircleRec((Vector2) {ball.x, ball.y}, 5, (Rectangle) {right_player.x, right_player.y, 15, 100})) {
             ball.x_direction *= -1;
+            ball.speed *= 1.1;
+        }
         if (IsKeyDown(KEY_W)) {
             left_player.y -= left_player.speed * GetFrameTime();
         }
@@ -87,9 +89,10 @@ void DrawGraphics() {
     EndDrawing();
 }
 
-void ServeBall(int *x, int *y, int *x_direction) {
+void ServeBall(int *x, int *y, int *x_direction, int *speed) {
     *x = screen_width / 2;
     *y = screen_height / 2;
+    *speed = 500;
     *x_direction = right_player.score - left_player.score;
     if (*x_direction == 0)
         *x_direction = 1;
