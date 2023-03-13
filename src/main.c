@@ -23,7 +23,20 @@ void Initialize();
 
 int main (void) {
     Initialize();
+
     while (!WindowShouldClose()) {
+        if (IsKeyDown(KEY_W)) {
+            left_player.y -= left_player.speed * GetFrameTime();
+        }
+        if (IsKeyDown(KEY_S)) {
+            left_player.y += left_player.speed * GetFrameTime();
+        }
+        if (IsKeyDown(KEY_I)) {
+            right_player.y -= right_player.speed * GetFrameTime();
+        }
+        if (IsKeyDown(KEY_K)) {
+            right_player.y += right_player.speed * GetFrameTime();
+        }
         DrawGraphics();
     }
     
@@ -44,17 +57,19 @@ void Initialize() {
 //  Players
     left_player.y = (screen_height - 50) / 2;
     left_player.x = screen_width / 10;
+    left_player.speed = 400;
     right_player.y = (screen_height - 50) / 2;
     right_player.x = screen_width * 9 / 10;
+    right_player.speed = 400;
 }
 
 void DrawGraphics() {
     BeginDrawing();
         ClearBackground(BLACK);
         // Left Player
-        DrawRectangle(screen_width / 10, left_player.y, 15, 100, WHITE);
+        DrawRectangle(left_player.x, left_player.y, 15, 100, WHITE);
         // Right Player
-        DrawRectangle(screen_width * 9 / 10, right_player.x, 15, 100, WHITE);
+        DrawRectangle(right_player.x, right_player.y, 15, 100, WHITE);
         // Ball
         DrawCircle(ball.x, ball.y, 5, WHITE);
     EndDrawing();
