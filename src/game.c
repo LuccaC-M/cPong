@@ -1,6 +1,11 @@
 #include "game.h"
 #include "raylib.h"
 
+// Global game variables
+int screen_width, screen_height;
+Ball ball;
+Player right_player, left_player;
+
 void Initialize() {
 //  Initialize the window
     InitWindow(0, 0, "Pong");
@@ -27,6 +32,25 @@ void Initialize() {
     left_player.score = 0;
 }
 
+void GameLoop() {
+//      Handle Physics
+        Physics();
+//      Handle player input
+        if (IsKeyDown(KEY_W)) {
+            left_player.y -= left_player.speed * GetFrameTime();
+        }
+        if (IsKeyDown(KEY_S)) {
+            left_player.y += left_player.speed * GetFrameTime();
+        }
+        if (IsKeyDown(KEY_I)) {
+            right_player.y -= right_player.speed * GetFrameTime();
+        }
+        if (IsKeyDown(KEY_K)) {
+            right_player.y += right_player.speed * GetFrameTime();
+        }
+//      Draw everything to the screen
+        DrawGraphics();
+}
 void DrawGraphics() {
     BeginDrawing();
         ClearBackground((Color) {43, 43, 43, 1});
