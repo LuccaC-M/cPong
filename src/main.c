@@ -54,22 +54,22 @@ void Initialize() {
 //  Left player
     left_player.y = (screen_height - 50) / 2;
     left_player.x = screen_width / 10;
-    left_player.speed = 400;
+    left_player.speed = 550;
     left_player.score = 0;
 //  Right player
     right_player.y = (screen_height - 50) / 2;
     right_player.x = screen_width * 9 / 10;
-    right_player.speed = 400;
+    right_player.speed = 550;
     left_player.score = 0;
 }
 
 void DrawGraphics() {
     BeginDrawing();
-        ClearBackground(BLACK);
+        ClearBackground((Color) {43, 43, 43, 1});
         // Left Player
-        DrawRectangle(left_player.x, left_player.y, 15, 100, WHITE);
+        DrawRectangle(left_player.x, left_player.y, 15, 100, RAYWHITE);
         // Right Player
-        DrawRectangle(right_player.x, right_player.y, 15, 100, WHITE);
+        DrawRectangle(right_player.x, right_player.y, 15, 100, RAYWHITE);
         // Ball
         DrawCircle(ball.x, ball.y, 5, WHITE);
     EndDrawing();
