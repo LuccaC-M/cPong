@@ -15,6 +15,13 @@ int main (void) {
     while (!WindowShouldClose()) {
         ball.y += ball.speed * ball.y_direction * GetFrameTime();
         ball.x += ball.speed * ball.x_direction * GetFrameTime();
+        if (ball.x <= 0)
+            right_player.score++;
+        if (ball.x >= screen_width)
+            left_player.score++;
+
+        if (ball.y <= 0 || ball.y >= screen_height)
+            ball.y_direction *= -1;
 
         if (IsKeyDown(KEY_W)) {
             left_player.y -= left_player.speed * GetFrameTime();
@@ -52,10 +59,12 @@ void Initialize() {
     left_player.y = (screen_height - 50) / 2;
     left_player.x = screen_width / 10;
     left_player.speed = 400;
+    left_player.score = 0;
 //  Right player
     right_player.y = (screen_height - 50) / 2;
     right_player.x = screen_width * 9 / 10;
     right_player.speed = 400;
+    left_player.score = 0;
 }
 
 void DrawGraphics() {

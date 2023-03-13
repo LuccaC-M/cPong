@@ -11,6 +11,8 @@ typedef struct {
     int x, y;
     // Movement variables
     int speed;
+    // Score
+    int score;
 }Player;
 
 
